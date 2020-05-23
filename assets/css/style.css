@@ -1,0 +1,233 @@
+body{
+    margin:0;
+    height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container{
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+}
+
+nav {
+    height: 50px;
+    background-color: #CCC;
+    display: flex;
+}
+
+section{
+    flex:1;
+    display: flex;
+}
+
+footer{
+    height: 84px;
+}
+
+nav ul,
+nav li{
+    margin:0;
+    padding: 0;
+    list-style: none;
+}
+
+nav ul{
+    display:flex;
+    flex: 1;
+}
+
+nav li{
+    flex:1;
+    height: 100%;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+    display: flex;
+}
+
+nav li:hover{
+    background-color: #DDD;
+}
+
+nav li.active{
+    background-color:#eee;
+    font-weight: bold;
+}
+
+nav li .group_close{
+    width: 30px;
+    color: black;
+    font-weight: bold;
+}
+
+nav li .group_name{
+    flex:1;
+}
+.add_tab{
+    width: 50px;
+    background-color: #999;
+    font-size: 35;
+    color: green;
+    border: 0;
+    cursor: pointer;
+}
+
+.modal_bg{
+    background-color: rgba(0,0,0, 0.5);
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+}
+
+.modal_area{
+    max-width: 500px;
+    padding: 20x;
+    margin:20px auto;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+#groupList button{
+    display: block;
+    font-size: 18px;
+    border: 1px solid #cecece;
+    background-color: #fff;
+    cursor: pointer;
+    height: 40px;
+    width: 100%;
+}
+
+#groupList button:hover{
+    background-color: #cecece;
+}
+
+.active_group{
+    background-color: #EEE !important;
+}
+
+.messages{
+    flex: 1;
+    
+    overflow-y: scroll;
+    
+}
+
+.message{
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+.m_info{
+    margin-bottom: 3px;
+}
+
+.m_sender{
+    font-weight: bold;
+    font-size: 14px;
+    color: black;
+}
+
+.m_date{
+    font-size: 12px;
+    color: #888;
+}
+
+.m_body{
+    font-size: 12px;
+}
+
+.sender_area{
+    height: 40px;
+    border: 2px solid #999;
+    margin: 20px;
+    border-radius: 5px;
+    display: flex;
+    overflow: hidden;
+}
+
+#sender_input{
+    border: 0;
+    font-size: 13px;
+    color: #000;
+    padding-left: 10px;
+    outline: 0;
+    flex: 1;
+}
+
+.sender_tools{
+    width: 80px;
+    display: flex;
+    cursor: pointer;
+}
+.sender_tool{
+    width: 40px;
+    height: 40px;
+    background-color: burlywood;
+}
+
+.userinfo{
+    height: 25px;
+    font-size: 18px;
+    line-height: 25px;
+    padding-left: 10px;
+    background-color: #eee;
+}
+
+.friend{
+    background-color: #dfdfdf;
+    padding-left: 10px;
+    position: fixed;
+    right: 0;
+    padding-right:15px;
+    line-height: 25px;
+    font-size: 18;
+    font-weight: bold;
+}
+
+.friend-list{
+    display: none;
+    list-style: none;
+    padding-right: 40px;
+    font-size: 18;
+    font-weight: bold;
+}
+
+.friend:hover .friend-list{
+    display: block;
+}
+
+
+
+
+
+
+
+.uploadFilesBtn{
+    background-color: red;
+}
+
+#sender_input_file{
+    position: absolute;
+    top: -999999999;
+}
+
+.progress{
+    display: none;
+    height: 10px;
+}
+
+.progressbar{
+    height: 10px;
+    background-color: red;
+}
+
+.submenu li{
+    position: absolute;
+    list-style: none;
+    display: inline;
+    z-index: 99999;
+}
