@@ -1,7 +1,6 @@
 Password in hash
 Change to DAO
 chat don't work
-update settings
 update friend list
 -----------------------------------
 mpdf->Output('arquivo.pdf', 'I');
