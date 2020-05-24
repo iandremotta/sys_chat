@@ -19,13 +19,8 @@ class homeController extends controller {
     public function index(){
         $dados = array(
             'id' =>$this->user->getUid(),
-            'findAll' =>$this->user->findBy('id'),
-            /*
-            'name' => $this->user->getName(),
-            'email' =>$this->user->getEmail(),
-            'username' =>$this->user->getUsername(),
-            'pass' =>$this->user->getPass()
-            */
+            'name' =>$this->user->findBy('name'),
+            
         );
         $this->loadTemplate('home', $dados);
     }   

@@ -2,7 +2,7 @@
 
     <div class="userinfo" >
             Logado como: 
-                <strong><?php echo ucfirst($findAll);?> </strong> 
+                <strong><?php echo ucfirst($name);?> </strong> 
                 <a href="<?php BASE_URL;?>settings" class="submenu"> 
                     <img src="<?php echo BASE_URL;?>assets/images/multimedia.png" alt="Configurações" title="Configurações"  width="14" height="12" alt="Configurações">
                     

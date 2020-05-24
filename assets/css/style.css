@@ -111,9 +111,8 @@ nav li .group_name{
 
 .messages{
     flex: 1;
-    
     overflow-y: scroll;
-    
+    scroll-behavior: smooth;
 }
 
 .message{
@@ -201,13 +200,8 @@ nav li .group_name{
 }
 
 
-
-
-
-
-
 .uploadFilesBtn{
-    background-color: red;
+    background-color: #999;
 }
 
 #sender_input_file{
@@ -230,4 +224,17 @@ nav li .group_name{
     list-style: none;
     display: inline;
     z-index: 99999;
+}
+
+.makeButton{
+    background-color: #1c87c9;
+    border: none;
+    color: white;
+    padding: 20px 34px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
 }

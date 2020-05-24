@@ -74,7 +74,7 @@ class Users extends Model {
 
 	public function validateUser($username, $pass) {
 
-		$sql = "SELECT * FROM users WHERE username = :username";
+		$sql = "SELECT * FROM users WHERE username = :username AND deleted = 0";
 		$sql = $this->db->prepare($sql);
 		$sql->bindValue(":username", $username);
 		$sql->execute();
@@ -123,29 +123,13 @@ class Users extends Model {
 		$sql->execute();
 	}
 
+	//bug
 	public function clearGroups() {
 		$sql = "UPDATE users SET groups = '' WHERE last_update < DATE_ADD(NOW(), INTERVAL -2 MINUTE)";
 		$this->db->query($sql);
 	}
+	
 
-	public function getUsersInGroup($group) {
-		$array = array();
-
-		$sql = "SELECT username FROM users WHERE groups LIKE :groups";
-		$sql = $this->db->prepare($sql);
-		$sql->bindValue(':groups', '%!'.$group.'!%');
-		$sql->execute();
-
-		if($sql->rowCount() > 0) {
-			$list = $sql->fetchAll(PDO::FETCH_ASSOC);
-
-			foreach($list as $item) {
-				$array[] = $item['username'];
-			}
-		}
-
-		return $array;
-	}
 
 	public function getUid() {
 		return $this->uid;
@@ -225,6 +209,40 @@ class Users extends Model {
 
 	*/
 
+	public function updateData($id, $value){
+		if(isset($_POST['data']) && (!empty($_POST['data'])) && $value =='deleted'){
+			$sql = "UPDATE users SET $value = 1 WHERE id = :id";
+			$sql = $this->db->prepare($sql);
+			$sql->bindValue(':id', $id);
+			$sql->execute();
+			header("Location: ".BASE_URL.'login');
+		}
+
+		if(isset($_POST['data']) && (!empty($_POST['data']))){
+			$sql = "UPDATE users SET $value = :newData WHERE id = :id";
+			$sql = $this->db->prepare($sql);
+			$sql->bindValue(':newData', $_POST['data']);
+			$sql->bindValue(':id', $id);
+			$sql->execute();
+			header("Location: ".BASE_URL.'settings');
+		}
+	}
+	public function updatePass($id){
+		
+		if(isset($_POST['password']) && (!empty($_POST['password']))){
+			$pass = $_POST['password'];
+			$newpass = password_hash($pass, PASSWORD_DEFAULT);		
+			$sql2 = "UPDATE users SET pass = :pass WHERE id = :id";
+			$sql2 = $this->db->prepare($sql2);
+			$sql2->bindValue(":pass", $newpass);
+			$sql2->bindValue(":id", $id);
+			$sql2->execute();
+			header("Location:".BASE_URL. 'settings' );
+		}			
+	}
+
+	
+
 	public function recoveryPassword($email){
 		$sql = "SELECT * FROM users WHERE email = :email";
 		$sql = $this->db->prepare($sql);
@@ -281,9 +299,7 @@ class Users extends Model {
 		}
 	}
 
-	public function updateDate(){
-
-	}
+	
 }	
 
 

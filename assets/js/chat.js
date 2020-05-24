@@ -148,7 +148,7 @@ var chat = {
 			$('.user_list ul').html('');
 		}
 	},
-
+	//probable error
 	showMessages:function() {
 		$('.messages').html('');
 
@@ -159,7 +159,9 @@ var chat = {
 			for(var i in this.groups) {
 				if(this.groups[i].id == this.activeGroup) {
 					msgs = this.groups[i].messages;
+					console.log("teste1");
 				}
+				console.log("teste2");
 			}
 
 			for(var i in msgs) {
@@ -170,19 +172,22 @@ var chat = {
 				html += '<span class="m_date">'+msgs[i].sender_date+'</span>';
 				html += '</div>';
 				html += '<div class="m_body">';
-				//abertura de arquivos
+				
+				//open files	
 				if(msgs[i].msg_type == 'text') {
 					html += msgs[i].msg;
 				} else if(msgs[i].msg_type == 'img') {
 					html += '<img src="'+BASE_URL+'media/images/'+msgs[i].msg+'" />';
 				}
+				
 
 				html += '</div>';
 				html += '</div>';
-
+			
 				$('.messages').append(html);
-
+				console.log("teste3");
 			}
+			
 
 		}
 
@@ -210,6 +215,7 @@ var chat = {
 		}
 	},
 
+	//don't work review https://www.youtube.com/watch?v=dBIfkRzJGOM
 	sendFile:function(file) {
 		if(this.activeGroup != 0) {
 			var formData = new FormData();
@@ -261,19 +267,13 @@ var chat = {
 
 		}
 	},
-
+	
 	updateLastTime:function(last_time) {
 		this.lastTime = last_time;
 	},
 
-	updateUserList:function(list, id_group){
-		for(var i in this.groups) {
-			if(this.groups[i].id == id_group) {
-				this.groups[i].users = list;
-			}
-		}
-	},
 
+	//json to insert message
 	insertMessage:function(item) {
 
 		for(var i in this.groups) {
@@ -336,45 +336,6 @@ var chat = {
 
 	},
 
-	userListActivity:function(){
-
-		var gs = this.getGroups();
-		var groups = [];
-
-		for(var i in gs) {
-			groups.push( gs[i].id );
-		}
-
-		if(groups.length > 0) {
-			this.userRequest = $.ajax({
-				url:BASE_URL+'ajax/get_userlist',
-				type:'GET',
-				data:{groups:groups},
-				dataType:'json',
-				success:function(json) {
-					if(json.status == '1') {
-
-						for(var i in json.users) {
-							chat.updateUserList(json.users[i], i);
-						}
-
-						chat.showUserList();
-					} else {
-						window.location.href = BASE_URL+'login';
-					}
-				},
-				complete:function(){
-					setTimeout(function(){
-						chat.userListActivity();
-					}, 5000);
-				}
-			});
-		} else {
-			setTimeout(function(){
-				chat.userListActivity();
-			}, 1000);	
-		}
-	}
 
 };
 

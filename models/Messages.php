@@ -13,7 +13,7 @@ class Messages extends Model {
 
 	}
 
-    public function get($last_time, $groups) {
+    public function getMessage($last_time, $groups) {
 		$array = array();
 
 		$sql = "SELECT
@@ -25,12 +25,26 @@ class Messages extends Model {
 		$sql = $this->db->prepare($sql);
 		$sql->bindValue(':date_msg', $last_time);
 		$sql->execute();
-		exit;
+		//exit;
 		if($sql->rowCount() > 0) {
 			$array = $sql->fetchAll(PDO::FETCH_ASSOC);
+			
 		}
 
 		return $array;
 	}
+	
+	
+	public function selectAll($id){
+		$array = array();
+		$sql = "SELECT msg, id_group, date_msg, msg_type FROM messages WHERE id_user = $id";
+		$sql = $this->db->query($sql);
+		if($sql->rowCount()>0){
+			$array = $sql->fetchAll();
+		}
+
+		return $array;
+	}
+
 
 }

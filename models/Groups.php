@@ -14,5 +14,12 @@ class Groups extends Model {
         $sql = $this->db->prepare($sql);
         $sql->bindValue(':name', $name);
         $sql->execute();
-    }   
+    }  
+    
+    public function getName($id){
+        $sql = "SELECT name FROM db_batepapo.groups WHERE id = $id";
+        $sql = $this->db->query($sql);
+        $array = $sql->fetch();
+        return $array['name'];
+    }
 }

@@ -98,12 +98,13 @@ class ajaxController extends controller {
 		echo json_encode($array);
 		exit;
 	}
-    
+	
+	
     public function get_messages() {
 		$array = array('status' => '1', 'msgs' => array(), 'last_time' => date('Y-m-d H:i:s'));
 		$messages = new Messages();
 
-		set_time_limit(60);
+		set_time_limit(60); //finish response
 
 		$ult_msg = date('Y-m-d H:i:s');
 		if(!empty($_GET['last_time'])) {
@@ -117,25 +118,24 @@ class ajaxController extends controller {
 
 		$this->user->updateGroups( $groups );
 		$this->user->clearGroups();
-
+		
 		while(true) {
-			session_write_close();
-			$msgs = $messages->get($ult_msg, $groups);
+			session_write_close();//bug
+			$msgs = $messages->getMessage($ult_msg, $groups);
 
 			if(count($msgs) > 0) {
 				$array['msgs'] = $msgs;
 				$array['last_time'] = date('Y-m-d H:i:s');
-
 				break;
 			} else {
 				sleep(2);
 				continue;
 			}
-
+			
 		}
 
 		echo json_encode($array);
-		exit;
+		
 	}
 
 }

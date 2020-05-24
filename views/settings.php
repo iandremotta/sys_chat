@@ -15,32 +15,35 @@
 			</div>
 		<?php endif; ?>
 
-		<form method="POST">
+		<form method="POST" >
 
 			Nome: <br>
-			<input type="text" name="name" />
-			<small><a href="#">Editar</a></small>
+			<input type="text" name="name" value="<?php echo ucfirst($name);?>" readonly="true" class="settings"/>
+			<small><a href="<?php BASE_URL;?>settings/updatename">Editar</a></small>
 			<br/><br/>
 
 			Email: <br>
-			<input type="email" name="email" />
-			<small><a href="#">Editar</a></small>
+			<input type="email" name="email" value="<?php echo ($email);?>" readonly="true" class="settings"/>
+			<small><a href="<?php BASE_URL;?>settings/updateemail">Editar</a></small>
 			<br/><br/>
 
 			Username:<br/>
-			<input type="text" name="username" />
-			<small><a href="#">Editar</a></small>
+			<input type="text" name="username" value="<?php echo ($username);?>" readonly="true" class="settings"/>
+			<small><a href="<?php BASE_URL;?>settings/updateusername">Editar</a></small>
 			<br/><br/>
 
 			Senha:<br/>
-			<input type="password" name="pass" id="pass"/>
-			<small><a href="#">Editar</a></small>
+			<input type="password" name="pass" id="pass" value="<?php echo ($pass);?>" readonly="true" maxlength="8" class="settings"/>
+			<small><a href="<?php BASE_URL;?>settings/resetpass">Editar</a></small>
 			<br/> <br>
-            
-			<input type="submit" id="submit" value="Relatório" />
+
+			<form action="https://www.w3docs.com/">
+         
+      </form>
+            <a href="<?php BASE_URL;?>report" class="makeButton" target="_blank">Relatório</a>
             <br><br>
             <a href="<?php BASE_URL;?>/">Voltar</a> <br><br>
-			<a href="<?php BASE_URL;?>/">Excluir usuário</a>
+			<a href="<?php BASE_URL;?>settings/deleteuser">Excluir usuário</a>
 		</form>
 	</div>
 	<script type="text/javascript" src="<?php echo BASE_URL; ?>assets/js/jquery-3.3.1.min.js"></script>
