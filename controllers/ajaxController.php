@@ -62,7 +62,9 @@ class ajaxController extends controller {
 		exit;
 	}
 
-	public function add_photo() {
+	/*
+	don't working
+	public function add_file() {
 		$array = array('status' => '1', 'error' => '0');
 		$messages = new Messages();
 
@@ -70,18 +72,13 @@ class ajaxController extends controller {
 			$id_group = $_POST['id_group'];
 			$uid = $this->user->getUid();
 
-			$allowed = array('image/jpeg', 'image/jpg', 'image/png');
-			if(!empty($_FILES['img']['tmp_name'])) {
-				if(in_array($_FILES['img']['type'], $allowed)) {
+			
+			if(!empty($_FILES['file']['tmp_name'])) {
+				if(in_array($_FILES['file']['type'], )) {
 					$newname = md5(time().rand(0,9999));
-					if($_FILES['img']['type'] == 'image/png') {
-						$newname .= '.png';
-					} else {
-						$newname .= '.jpg';
-					}
-
-					move_uploaded_file($_FILES['img']['tmp_name'], 'media/images/'.$newname);
-					$messages->add($uid, $id_group, $newname, 'img');
+					
+					move_uploaded_file($_FILES['file']['tmp_name'], 'media/images/'.$newname);
+					$messages->add($uid, $id_group, $newname, 'file');
 				} else {
 					$array['error'] = '1';
 					$array['errorMsg'] = 'Arquivo inválido';
@@ -99,6 +96,8 @@ class ajaxController extends controller {
 		exit;
 	}
 	
+
+	*/
 	
     public function get_messages() {
 		$array = array('status' => '1', 'msgs' => array(), 'last_time' => date('Y-m-d H:i:s'));

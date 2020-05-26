@@ -109,7 +109,7 @@ class Users extends Model {
 	public function clearLoginHash() {
 		$_SESSION['chathashlogin'] = '';
 	}
-
+	//bug
 	public function updateGroups($groups) {
 		$groupstring = '';
 		if(count($groups) > 0) {

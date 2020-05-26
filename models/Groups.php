@@ -22,4 +22,15 @@ class Groups extends Model {
         $array = $sql->fetch();
         return $array['name'];
     }
+
+    /* create admin and method isAdmin(boolean)
+    public function deleteGroup($id){
+        $user = new Users();
+        if($user->isAdmin()){
+            $sql = "DELETE FROM db_batepapo.groups WHERE id = $id";
+            $sql = $this->db->query($sql);
+            $sql->execute();
+        }
+    }
+    */
 }

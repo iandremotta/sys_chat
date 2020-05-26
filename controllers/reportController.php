@@ -26,7 +26,7 @@ class reportController extends controller {
        
         $id = $this->user->getUid();
         $messages = new Messages();
-        $group = new Groups();
+        //$group = new Groups();
 
         $data['message']= $messages->selectAll($id);
         

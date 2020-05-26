@@ -28,9 +28,9 @@ $(function(){
     chat.chatActivity();
     
     $('.add_tab').click(()=>{
-        var html = '<h1>Nova janela</h1>';
+        var html = '<h1 style="background-color: #c8c8c8";font-size: 22px;>Novo grupo</h1>';
         html += '<div id="groupList">Carregando </div>'
-        html+= '<hr><button onclick="addGroupModal()">Adicionar Sala</button><button onclick="fecharJanela()">Fechar Janela</button><br><br>';
+        html+= '<hr><button onclick="addGroupModal()" style="background-color: #c8c8c8">Adicionar Grupo</button><button onclick="fecharJanela()" style="background-color: #c8c8c8">Fechar Janela</button><br><br>';
         $('.modal_area').html(html);
         $('.modal_bg').show();
         
