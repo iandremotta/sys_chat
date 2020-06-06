@@ -272,6 +272,38 @@ var chat = {
 		}
 	},
 
+	chatActivity:function(){
+
+		var gs = this.getGroups();
+		var groups =[];
+		for(var i in gs){
+			groups.push(gs[i].id);
+		}
+		
+		if(groups.length > 0){
+			$.ajax({
+				urL:BASE_URL+'ajax/get_messages',
+				type:'get',
+				data:{last_time:this.lastTime, groups:groups},
+				dataType:'json',
+				success:function(json){
+					if(json.status=='1'){
+
+					} else {
+						window.location.href = BASE_URL+'login';
+					}
+				},
+				complete:function(){
+					chat.chatActivity();
+				}
+			});
+		} else {
+			setTimeout(function(){
+				chat.chatActivity();
+			}, 1000);
+		}
+	},
+	/*
 	chatActivity:function() {
 
 		var gs = this.getGroups();
@@ -311,6 +343,6 @@ var chat = {
 		}
 
 	},
-
+*/
 
 };

@@ -12,9 +12,8 @@ class Messages extends Model {
 		$sql->execute();
 	}
 
-    public function getMessage($last_time, $groups) {
+    public function get($last_time, $groups) {
 		$array = array();
-
 		$sql = "SELECT
 		messages.*,
 		users.username

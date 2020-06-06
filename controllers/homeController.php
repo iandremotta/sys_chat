@@ -20,7 +20,6 @@ class homeController extends controller {
         $dados = array(
             'id' =>$this->user->getUid(),
             'name' =>$this->user->findBy('name'),
-            
         );
         $this->loadTemplate('home', $dados);
     }   
