@@ -69,13 +69,15 @@ $(function(){
 		}
     });
     
-    $('.uploadFilesBtn').on('click', function(){
-        $('#sender_input_file').trigger('click');
+   $('.imgUploadBtn').on('click', function(){
+        $('#sender_input_img').trigger('click');
+   });
+   
+    $('#sender_input_img').on('change', function(e){
+            chat.sendPhoto(e.target.files[0]);
     });
 
-    $('#sender_input_file').on('change', function(e){
-        chat.sendFile(e.target.files[0]);
-    });
+   
 });
 
 

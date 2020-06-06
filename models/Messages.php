@@ -10,7 +10,6 @@ class Messages extends Model {
 		$sql->bindValue(':msg', $msg);
 		$sql->bindValue(':msg_type', $msg_type);
 		$sql->execute();
-
 	}
 
     public function getMessage($last_time, $groups) {
@@ -21,14 +20,13 @@ class Messages extends Model {
 		users.username
 		FROM messages 
 		LEFT JOIN users ON users.id = messages.id_user
-		WHERE date_msg < NOW() AND id_group IN (".(implode(',', $groups)).")";
+		WHERE date_msg > :date_msg AND id_group IN (".(implode(',', $groups)).")";
 		$sql = $this->db->prepare($sql);
 		$sql->bindValue(':date_msg', $last_time);
 		$sql->execute();
-		//exit;
+
 		if($sql->rowCount() > 0) {
 			$array = $sql->fetchAll(PDO::FETCH_ASSOC);
-			
 		}
 
 		return $array;

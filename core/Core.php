@@ -7,7 +7,7 @@
     $url .= $_GET['url']; 
     } 
             
-            $params = array();
+ $params = array();
     if(!empty($url) && $url != '/'){ 
     $url = explode('/', $url); 
     array_shift($url); 

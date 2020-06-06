@@ -151,44 +151,31 @@ var chat = {
 	//probable error
 	showMessages:function() {
 		$('.messages').html('');
-
-		if(this.activeGroup != 0) {
-
+		if(this.activeGroup!=0){
 			var msgs = [];
-
-			for(var i in this.groups) {
-				if(this.groups[i].id == this.activeGroup) {
+			for(var i in this.groups){
+				if(this.groups[i].id ==this.activeGroup){
 					msgs = this.groups[i].messages;
-					console.log("teste1");
 				}
-				console.log("teste2");
 			}
-
-			for(var i in msgs) {
-
+			for(var i in msgs){
 				var html = '<div class="message">';
-				html += '<div class="m_info">';
-				html += '<span class="m_sender">'+msgs[i].sender_name+'</span>';
+				html+='<div class="m_info">';
+				html+= '<span class="m_sender">'+msgs[i].sender_name+'</span>';
 				html += '<span class="m_date">'+msgs[i].sender_date+'</span>';
-				html += '</div>';
+				html+= '</div>';
 				html += '<div class="m_body">';
-				
-				//open files	
-				if(msgs[i].msg_type == 'text') {
+
+				if(msgs[i].msg_type == 'text'){
 					html += msgs[i].msg;
-				} else if(msgs[i].msg_type == 'img') {
-					html += '<img src="'+BASE_URL+'media/images/'+msgs[i].msg+'" />';
+				} else if(msgs[i].msg_type == 'img'){
+					html += '<img src="'+BASE_URL+'media/images/'+msgs[i].msg+'"/>';
 				}
 				
-
 				html += '</div>';
 				html += '</div>';
-			
 				$('.messages').append(html);
-				console.log("teste3");
 			}
-			
-
 		}
 
 	},
@@ -215,56 +202,50 @@ var chat = {
 		}
 	},
 
-	//don't work review https://www.youtube.com/watch?v=dBIfkRzJGOM
-	sendFile:function(file) {
-		if(this.activeGroup != 0) {
+	sendPhoto:function(img) {
+		if(this.activeGroup !=0){
 			var formData = new FormData();
-			formData.append('file', file);
+			formData.append('img', img);
 			formData.append('id_group', this.activeGroup);
 
 			$.ajax({
-				url:BASE_URL+'ajax/add_file',
+				url:BASE_URL+'ajax/add_photo',
 				type:'POST',
 				dataType:'json',
 				data:formData,
 				contentType:false,
 				processData:false,
-				success:function(json) {
-					if(json.status == '1') {
-						if(json.error == '1') {
+				success:function(json){
+					if(json.status== '1'){
+						if(json.error == '1'){
 							alert(json.errorMsg);
 						}
 					} else {
-						window.location.href = BASE_URL+'login';
+						window.location.href = BASE_URL + 'login';
 					}
 				},
-				xhr:function() {
-					var xhrPadrao = $.ajaxSettings.xhr();
-
-					if(xhrPadrao.upload) {
-						xhrPadrao.upload.addEventListener('progress', function(p) {
+				xhr:function(){
+					var xhrPAdrao = $.ajaxSettings.xhr();
+					if(xhrPAdrao.upload){
+						xhrPAdrao.upload.addEventListener('progress', function(p){
 							var total = p.total;
 							var loaded = p.loaded;
-							var pct = (total/loaded) * 100;
-
-							if(pct > 0) {
-								$('.progressbar').css('width', pct+'%');
+							var pct = (total/loaded)*100;
+							if(pct>0){
+								$('.progressbar').css('width', pct+ '%');
 								$('.progress').show();
 							}
 							
-							if(pct >= 100) {
+							if(pct >= 100){
 								$('.progressbar').css('width', '0%');
 								$('.progress').hide();
 							}
-
+							
 						}, false);
 					}
-
-					return xhrPadrao;
+					return xhrPAdrao;
 				}
 			});
-
-
 		}
 	},
 	
@@ -274,14 +255,11 @@ var chat = {
 
 
 	//json to insert message
-	insertMessage:function(item) {
-
-		for(var i in this.groups) {
-			if(this.groups[i].id == item.id_group) {
-
+	insertMessage:function(item){
+		for(var i in this.groups){
+			if(this.groups[i].id == item.id_group){
 				var date_msg = item.date_msg.split(' ');
 				date_msg = date_msg[1];
-
 				this.groups[i].messages.push({
 					id:item.id,
 					sender_id:item.id_user,
@@ -289,11 +267,9 @@ var chat = {
 					sender_date:date_msg,
 					msg:item.msg,
 					msg_type:item.msg_type
-				});
-
+				})
 			}
 		}
-
 	},
 
 	chatActivity:function() {
@@ -338,10 +314,3 @@ var chat = {
 
 
 };
-
-
-
-
-
-
-

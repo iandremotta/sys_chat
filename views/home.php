@@ -1,5 +1,4 @@
 <div class="container">
-
     <div class="userinfo" >
             Logado como: 
                 <strong><?php echo ucfirst($name);?> </strong> 
@@ -21,39 +20,33 @@
     </div>
     
     <nav>
-        <ul></ul>
+        <ul>
+
+        </ul>
     
         <button class="add_tab">+</button>
     </nav>
-    <section> 
-        <div class="messages">
-            <div class="message">
-                <div class="m_info">
-                    <span class="m_sender">André</span>
-                    <span class="m_date">10:00</span>
-                </div>
 
-                <div class="m_body">
-                    O santos é o melhor time do mundo... 
-                </div>
-            </div>
+    <div class="progress">
+        <div class="progressbar" style="width: 0%;">
+    
         </div>
+    </div>
+    <section> 
+        <div class="messages"></div>
     </section>
 
     <footer>
         <div class="sender_area">
-            <input type="file" name="sender_input_file" id="sender_input_file">
-            <input type="text" name="sender_input" autofocus id="sender_input" placeholder="Digite aqui sua mensagem">
-            <div class="sender_tools">
-                <div class="sender_tool uploadFilesBtn"></div>
-                <div class="sender_tool"></div>
-            </div>
-        </div>
+            
+			<input type="file" id="sender_input_img" />
+			<input type="text" id="sender_input" placeholder="Digite aqui sua mensagem" />
+			<div class="sender_tools">
+				<div class="sender_tool imgUploadBtn"></div>
+				<div class="sender_tool"></div>
+			</div>
+		</div>
     </footer>
 
-    <div class="progress">
-        <div class="progressbar" style="width: 0%">
-
-        </div>
-    </div>
+  
 </div>
