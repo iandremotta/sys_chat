@@ -202,6 +202,37 @@ var chat = {
 		}
 	},
 
+	chatActivity:function(){
+		var gs = this.getGroups();
+		var groups = [];
+		for(var i in gs){
+			groups.push( gs[i].id);
+		}
+		console.log("Rodou: "+groups.length);
+		if(groups.length >0){
+			$.ajax({
+				url:BASE_URL+'ajax/get_messages',
+					type:'GET',
+					data:{last_time:this.lastTime, groups:groups},
+					dataType:'json',
+					success:function(json){
+						if(json.status == '1'){
+
+						} else{
+							window.location.href = BASE_URL+'login';
+						}
+					},
+					complete:function(){
+						chat.chatActivity();
+					}
+				});
+		} else {
+			setTimeout(() => {
+				chat.chatActivity();
+			}, 1000);
+		}
+	}, //fim do chat activity
+
 	sendPhoto:function(img) {
 		if(this.activeGroup !=0){
 			var formData = new FormData();
@@ -249,7 +280,7 @@ var chat = {
 		}
 	},
 	
-	updateLastTime:function(last_time) {
+	updateLastTime:function(last_time){
 		this.lastTime = last_time;
 	},
 
@@ -270,79 +301,5 @@ var chat = {
 				})
 			}
 		}
-	},
-
-	chatActivity:function(){
-
-		var gs = this.getGroups();
-		var groups =[];
-		for(var i in gs){
-			groups.push(gs[i].id);
-		}
-		
-		if(groups.length > 0){
-			$.ajax({
-				urL:BASE_URL+'ajax/get_messages',
-				type:'get',
-				data:{last_time:this.lastTime, groups:groups},
-				dataType:'json',
-				success:function(json){
-					if(json.status=='1'){
-
-					} else {
-						window.location.href = BASE_URL+'login';
-					}
-				},
-				complete:function(){
-					chat.chatActivity();
-				}
-			});
-		} else {
-			setTimeout(function(){
-				chat.chatActivity();
-			}, 1000);
-		}
-	},
-	/*
-	chatActivity:function() {
-
-		var gs = this.getGroups();
-		var groups = [];
-
-		for(var i in gs) {
-			groups.push( gs[i].id );
-		}
-
-		if(groups.length > 0) {
-			this.msgRequest = $.ajax({
-				url:BASE_URL+'ajax/get_messages',
-				type:'GET',
-				data:{last_time:this.lastTime, groups:groups},
-				dataType:'json',
-				success:function(json) {
-					if(json.status == '1') {
-						chat.updateLastTime( json.last_time );
-
-						for(var i in json.msgs) {
-							chat.insertMessage(json.msgs[i]);
-						}
-
-						chat.showMessages();
-					} else {
-						window.location.href = BASE_URL+'login';
-					}
-				},
-				complete:function(){
-					chat.chatActivity();
-				}
-			});
-		} else {
-			setTimeout(function(){
-				chat.chatActivity();
-			}, 1000);
-		}
-
-	},
-*/
-
+	},	
 };

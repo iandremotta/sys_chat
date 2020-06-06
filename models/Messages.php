@@ -23,11 +23,9 @@ class Messages extends Model {
 		$sql = $this->db->prepare($sql);
 		$sql->bindValue(':date_msg', $last_time);
 		$sql->execute();
-
 		if($sql->rowCount() > 0) {
 			$array = $sql->fetchAll(PDO::FETCH_ASSOC);
 		}
-
 		return $array;
 	}
 	
