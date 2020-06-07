@@ -114,8 +114,6 @@ class ajaxController extends controller {
 			$groups = $_GET['groups'];
 		}
 
-		$this->user->updateGroups( $groups );
-		$this->user->clearGroups();
 
 		while(true) {
 			session_write_close();

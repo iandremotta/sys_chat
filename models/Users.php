@@ -123,14 +123,6 @@ class Users extends Model {
 		$sql->execute();
 	}
 
-	//bug
-	public function clearGroups() {
-		$sql = "UPDATE users SET groups = '' WHERE last_update < DATE_ADD(NOW(), INTERVAL -2 MINUTE)";
-		$this->db->query($sql);
-	}
-	
-
-
 	public function getUid() {
 		return $this->uid;
 	}
