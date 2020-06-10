@@ -1,6 +1,7 @@
 <?php
 
-class homeController extends controller {
+class homeController extends controller
+{
 
     private $user;
 
@@ -11,17 +12,17 @@ class homeController extends controller {
     {
         $this->user = new Users();
 
-        if(!$this->user->verifyLogin()){
-            header("Location: ".BASE_URL."/login");
+        if (!$this->user->verifyLogin()) {
+            header("Location: " . BASE_URL . "/login");
             exit;
         }
     }
-    public function index(){
+    public function index()
+    {
         $dados = array(
-            'id' =>$this->user->getUid(),
-            'name' =>$this->user->findBy('name'),
+            'id' => $this->user->getUid(),
+            'name' => $this->user->findBy('name'),
         );
         $this->loadTemplate('home', $dados);
-    }   
-
+    }
 }
